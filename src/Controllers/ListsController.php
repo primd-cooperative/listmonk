@@ -16,7 +16,7 @@ class ListsController {
     function getAll($page=1, $perPage=100) : array
     {
         $response = $this->listMonk->http('/api/lists' . '?page=' . $page . '&per_page=' . $perPage);
-        $lists = json_decode($response)->data->results;
+        $lists = json_decode((string) $response)->data->results;
         $listObjects = [];
         foreach ($lists as $key => $list) {
             $listObjects[$key] = new MonkList($list);  
@@ -26,7 +26,7 @@ class ListsController {
 
     function get($id) {
         $response = $this->listMonk->http('/api/lists/' . $id);
-        return new MonkList(json_decode($response)->data);
+        return new MonkList(json_decode((string) $response)->data);
     }
 
     function create(MonkList $list) {
@@ -36,7 +36,7 @@ class ListsController {
             'optin' => $list->getOptin(),
             'tags' => $list->getTags()
         ]);
-        return new MonkList(json_decode($response)->data);
+        return new MonkList(json_decode((string) $response)->data);
     }
 
     function update(MonkList $list) {
@@ -48,7 +48,7 @@ class ListsController {
             'optin' => $list->getOptin(),
             'tags' => $list->getTags()
         ]);
-        return new MonkList(json_decode($response)->data);
+        return new MonkList(json_decode((string) $response)->data);
     }
 
     function delete($id) {
@@ -58,7 +58,7 @@ class ListsController {
         try {
             $this->get($id);
             
-        } catch (\Throwable $th) {
+        } catch (\Throwable) {
             return $stored;        
         }
         throw new \Exception("List not deleted");       

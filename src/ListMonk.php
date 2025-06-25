@@ -10,17 +10,11 @@ use GuzzleHttp\Psr7\Request;
 
 class ListMonk
 {
-    private $serverUrl;
-    private $username;
-    private $password;
     private $listsController;
     private $subscribersController;
 
-    public function __construct($serverUrl, $username, $password)
+    public function __construct(private $serverUrl, private $username, private $password)
     {
-        $this->serverUrl = $serverUrl;
-        $this->username = $username;
-        $this->password = $password;
     }
 
     public function lists()
@@ -56,11 +50,11 @@ class ListMonk
         $headers = [
             'Authorization' => 'Basic ' . base64_encode($this->username . ":" . $this->password)
         ];
-        if (strtolower($method) == "get") {
-            $request = new Request(strtoupper($method), $this->serverUrl . $path, $headers);
+        if (strtolower((string) $method) == "get") {
+            $request = new Request(strtoupper((string) $method), $this->serverUrl . $path, $headers);
         } else {
             $headers['Content-Type'] = 'application/json';
-            $request = new Request(strtoupper($method), $this->serverUrl . $path, $headers, json_encode($data));
+            $request = new Request(strtoupper((string) $method), $this->serverUrl . $path, $headers, json_encode($data));
         }
         $res = $client->sendAsync($request)->wait();
         return $res->getBody();

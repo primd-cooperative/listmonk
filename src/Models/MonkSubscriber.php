@@ -17,7 +17,7 @@ class MonkSubscriber {
     private $allowed_status = ["enabled", "disabled", "blocklisted"];
         
     // Constructor to initialize the object
-    public function __construct(object $subscriber = null) {
+    public function __construct(?object $subscriber = null) {
         if ($subscriber == null) return;
         $this->id = $subscriber->id;
         $this->created_at = $subscriber->created_at;

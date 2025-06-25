@@ -15,7 +15,7 @@ class SubscribersController {
     function getAll($page=1, $perPage=100) : array
     {
         $response = $this->listMonk->http('/api/subscribers' . '?page=' . $page . '&per_page=' . $perPage);
-        $subscribers = json_decode($response)->data->results;
+        $subscribers = json_decode((string) $response)->data->results;
         $subscriberObjects = [];
         foreach ($subscribers as $key => $subscriber) {
             $subscriberObjects[$key] = new MonkSubscriber($subscriber);  
@@ -25,7 +25,7 @@ class SubscribersController {
 
     function get($id) {
         $response = $this->listMonk->http('/api/subscribers/' . $id);
-        return new MonkSubscriber(json_decode($response)->data);
+        return new MonkSubscriber(json_decode((string) $response)->data);
     }
 
     function create(MonkSubscriber $subscriber, $preConfirm = false) {
@@ -45,7 +45,7 @@ class SubscribersController {
             throw new \Exception($th->getResponse()->getBody()->getContents());
         }
        
-        return new MonkSubscriber(json_decode($response)->data);
+        return new MonkSubscriber(json_decode((string) $response)->data);
     }
 
     function modifyLists($subscriber_ids, $action, $target_list_ids, $status  = null) {
@@ -63,7 +63,7 @@ class SubscribersController {
     function update(MonkSubscriber $subscriber) {
         if ($subscriber->getId() == null) throw new \Exception("Subscriber id is required");
         $response = $this->listMonk->http('/api/subscribers/' . $subscriber->getId(), 'put', $subscriber->toArray());
-        return new MonkSubscriber(json_decode($response)->data);
+        return new MonkSubscriber(json_decode((string) $response)->data);
     }
 
     function delete($id) {
@@ -73,7 +73,7 @@ class SubscribersController {
         try {
             $this->get($id);
             
-        } catch (\Throwable $th) {
+        } catch (\Throwable) {
             return $stored;        
         }
         throw new \Exception("Subscriber not deleted");       

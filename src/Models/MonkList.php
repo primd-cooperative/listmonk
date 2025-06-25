@@ -4,6 +4,7 @@ namespace AdnanHussainTurki\ListMonk\Models;
 
 class MonkList {
     private $id;
+    private $description;
     private $created_at;
     private $updated_at;
     private $uuid;
@@ -15,9 +16,10 @@ class MonkList {
     private $allowed_types = ["public", "private"];
     private $allowed_options = ["single", "double"];
 
-    public function __construct(object $list = null) {
+    public function __construct(?object $list = null) {
         if ($list == null) return;
         $this->id = $list->id;
+        $this->description = $list->description;
         $this->created_at = $list->created_at;
         $this->updated_at = $list->updated_at;
         $this->uuid = $list->uuid;
@@ -34,6 +36,14 @@ class MonkList {
 
     public function setId($id) {
         $this->id = $id;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
     }
 
     public function getCreatedAt() {
@@ -109,6 +119,7 @@ class MonkList {
     public function toArray() {
         return [
             'id' => $this->id,
+            'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'uuid' => $this->uuid,
@@ -122,5 +133,5 @@ class MonkList {
 
 }
 
-    
+
 ?>
