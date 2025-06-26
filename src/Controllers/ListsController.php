@@ -19,7 +19,7 @@ class ListsController {
         $lists = json_decode((string) $response)->data->results;
         $listObjects = [];
         foreach ($lists as $key => $list) {
-            $listObjects[$key] = new MonkList($list);  
+            $listObjects[$key] = new MonkList($list);
         }
         return $listObjects;
     }
@@ -57,11 +57,9 @@ class ListsController {
         $response = $this->listMonk->http('/api/lists/' . $id, 'delete');
         try {
             $this->get($id);
-            
         } catch (\Throwable) {
-            return $stored;        
+            return $stored;
         }
-        throw new \Exception("List not deleted");       
+        throw new \Exception("List not deleted");
     }
-
 }

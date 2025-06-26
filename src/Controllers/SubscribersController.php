@@ -18,7 +18,7 @@ class SubscribersController {
         $subscribers = json_decode((string) $response)->data->results;
         $subscriberObjects = [];
         foreach ($subscribers as $key => $subscriber) {
-            $subscriberObjects[$key] = new MonkSubscriber($subscriber);  
+            $subscriberObjects[$key] = new MonkSubscriber($subscriber);
         }
         return $subscriberObjects;
     }
@@ -33,7 +33,7 @@ class SubscribersController {
             'name' => $subscriber->getName(),
             'email' => $subscriber->getEmail(),
             'status' => $subscriber->getStatus(),
-            'lists' => $subscriber->getLists(),
+            'lists' => $subscriber->getLists(TRUE),
             'preconfirm_subscriptions' => $preConfirm
         ];
         if ($subscriber->getAttribs() != null) {
@@ -44,7 +44,7 @@ class SubscribersController {
         } catch (ClientException $th) {
             throw new \Exception($th->getResponse()->getBody()->getContents());
         }
-       
+
         return new MonkSubscriber(json_decode((string) $response)->data);
     }
 
@@ -72,10 +72,10 @@ class SubscribersController {
         $response = $this->listMonk->http('/api/subscribers/' . $id, 'delete');
         try {
             $this->get($id);
-            
+
         } catch (\Throwable) {
-            return $stored;        
+            return $stored;
         }
-        throw new \Exception("Subscriber not deleted");       
+        throw new \Exception("Subscriber not deleted");
     }
 }

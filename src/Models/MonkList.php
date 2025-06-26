@@ -27,7 +27,6 @@ class MonkList {
         $this->type = $list->type;
         $this->optin = $list->optin;
         $this->tags = $list->tags;
-        $this->subscriber_count = $list->subscriber_count;
     }
 
     public function getId() {
@@ -108,14 +107,6 @@ class MonkList {
         $this->tags = $tags;
     }
 
-    public function getSubscriberCount() {
-        return $this->subscriber_count;
-    }
-
-    public function setSubscriberCount($subscriber_count) {
-        $this->subscriber_count = $subscriber_count;
-    }
-
     public function toArray() {
         return [
             'id' => $this->id,
@@ -126,12 +117,7 @@ class MonkList {
             'name' => $this->name,
             'type' => $this->type,
             'optin' => $this->optin,
-            'tags' => $this->tags,
-            'subscriber_count' => $this->subscriber_count
+            'tags' => $this->tags
         ];
     }
-
 }
-
-
-?>
