@@ -1,10 +1,10 @@
 <?php
 
 
-namespace AdnanHussainTurki\ListMonk;
+namespace ListMonk;
 
-use AdnanHussainTurki\ListMonk\Controllers\ListsController;
-use AdnanHussainTurki\ListMonk\Controllers\SubscribersController;
+use ListMonk\Controllers\ListsController;
+use ListMonk\Controllers\SubscribersController;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 

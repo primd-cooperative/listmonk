@@ -1,9 +1,9 @@
 <?php
 
-namespace AdnanHussainTurki\ListMonk\Controllers;
+namespace ListMonk\Controllers;
 
-use AdnanHussainTurki\ListMonk\ListMonk;
-use AdnanHussainTurki\ListMonk\Models\MonkList;
+use ListMonk\ListMonk;
+use ListMonk\Models\MonkList;
 
 class ListsController {
     protected $listMonk;

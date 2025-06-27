@@ -16,7 +16,7 @@ You can install this library to your project via composer using the following co
 require __DIR__ . 'vendor/autoload.php';
 
 // Create a new ListMonk instance
-$listMonk = new \AdnanHussainTurki\ListMonk\ListMonk(
+$listMonk = new \ListMonk\ListMonk(
     "http://localhost:9000", // Server URL
     "listmonk", // Username
     "listmonk", // Password
@@ -41,7 +41,7 @@ echo "List with id 3:\n";
 echo $list->getId() . " - " . $list->getName() . "\n";
 
 // Create a new list
-$newList = new \AdnanHussainTurki\ListMonk\Models\MonkList();
+$newList = new \ListMonk\Models\MonkList();
 $newList->setName("Test List");
 $newList->setType("private");
 $newList->setOptin("single");
@@ -88,7 +88,7 @@ echo "Subscriber with id 1:\n";
 echo $subscriber->getId() . " - " . $subscriber->getName() . "\n";
 
 // Create a new subscriber
-$newSubscriber = new \AdnanHussainTurki\ListMonk\Models\MonkSubscriber();
+$newSubscriber = new \ListMonk\Models\MonkSubscriber();
 $newSubscriber->setName("Test Subscriber");
 $newSubscriber->setEmail(random_int(23, 1000). "@gmail.com");
 $newSubscriber->setStatus("enabled");

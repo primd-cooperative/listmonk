@@ -1,6 +1,6 @@
 <?php
 
-namespace AdnanHussainTurki\ListMonk\Models;
+namespace ListMonk\Models;
 
 class MonkList {
     private $id;
