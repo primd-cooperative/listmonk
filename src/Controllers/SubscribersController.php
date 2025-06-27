@@ -23,7 +23,7 @@ class SubscribersController
 				$id
 			));
 
-			return new MonkSubscriber(json_decode((string) $response)->data->results[0] ?? new stdClass());
+			return new MonkSubscriber(json_decode((string) $response)->data->results[0] ?? NULL);
 
 		} else {
 			$response = $this->listMonk->http('/api/subscribers/' . $id);
