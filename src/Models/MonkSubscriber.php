@@ -154,7 +154,7 @@ class MonkSubscriber {
             'name' => $this->name,
             'attribs' => $this->attribs,
             'status' => $this->status,
-            'lists' => $this->lists
+            'lists' => $this->getLists(TRUE)
         ];
     }
 
